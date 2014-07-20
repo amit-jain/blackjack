@@ -1,0 +1,39 @@
+package cards.common;
+
+/**
+ * Enum defining the rank of the playing cards.
+ * 
+ * @author amitjain
+ *
+ */
+public enum Rank {
+    ACE("A"),
+    TWO("2"),
+    THREE("3"),
+    FOUR("4"),
+    FIVE("5"),
+    SIX("6"),
+    SEVEN("7"),
+    EIGHT("8"),
+    NINE("9"),
+    TEN("10"),
+    JACK("J"),
+    QUEEN("Q"),
+    KING("K");
+    
+    private String display;
+    
+    Rank(String display) {
+        this.display = display;
+    }
+    
+    public String toString() {
+        return display;
+    }
+    
+    public int getValue() {
+        return rankValue.getValue(this);
+    }
+    
+    public static RankValue rankValue;        
+}
