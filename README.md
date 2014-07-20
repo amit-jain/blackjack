@@ -1,6 +1,13 @@
 # Blackjack
 Blackjack is card game usually played at casinos. More information about the game and its rules can be found at http://en.wikipedia.org/wiki/Blackjack.
 
+## Features
+* Multi Player - (Number of players can be set when game being initialized)
+* Multi Deck - (Number of decks can be set when game being initialized)
+* DoubleDown
+* Stand
+* *Split - Not supported yet*
+
 # Usage
 ## Setup
 ### Pre-requisities
