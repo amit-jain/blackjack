@@ -16,11 +16,14 @@ public class Deck {
     private List<Card> cards;
     
     public Deck(int numDecks) {
-        /* Initialize the deck to contain all the 52 cards */
         cards = new ArrayList<Card>();
-        for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
-                cards.add(new Card(rank, suit));
+        /* Initialize the number of decks required. */
+        for (int deck = 0; deck < numDecks; deck++) {
+            /* Initialize the deck to contain all the 52 cards */
+            for (Suit suit : Suit.values()) {
+                for (Rank rank : Rank.values()) {
+                    cards.add(new Card(rank, suit));
+                }
             }
         }
         shuffle();

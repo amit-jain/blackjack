@@ -34,8 +34,8 @@ public class GameDriver {
                                 "- java GameDriver players=<integer> decks=<integer> chips=<integer>");
         
         Blackjack game = null;
-        if (args.length == 2) {
-            String line = args[0] + args[1];
+        if (args.length == 3) {
+            String line = args[0] + " " + args[1] + " " + args[2];
             Map<String, String> options = 
                     Splitter.on(" ").omitEmptyStrings().
                         trimResults().withKeyValueSeparator("=").split(line);

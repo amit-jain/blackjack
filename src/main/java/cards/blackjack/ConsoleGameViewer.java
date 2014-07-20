@@ -31,7 +31,7 @@ public class ConsoleGameViewer implements Visitor<List<String>, Blackjack, Black
 
         rows.add(Strings.repeat(" ", game.dealer().getHand().getCards().size() * 5));
         for(Integer idx : multimap.keySet()) {
-            rows.add(Joiner.on("  ").join(multimap.get(idx)));
+            rows.add(Joiner.on(Strings.repeat(" ", 20)).join(multimap.get(idx)));
         }
         return rows;                
     }
@@ -39,16 +39,22 @@ public class ConsoleGameViewer implements Visitor<List<String>, Blackjack, Black
     @Override
     public List<String> visit(BlackjackPlayer player) {
         List<String> rows = Lists.newArrayList();
-        rows.add(player.getName());
         List<String> hands = player.getHand().accept(this);
-        rows.add(Strings.repeat("-", (hands.isEmpty() ? 7 : hands.get(0).length())));
-        rows.addAll(hands);
-        rows.add("Chips : " + player.getChips());
-        rows.add("Bet : " + player.getBet());
-        if (player.isStateVisible()) {
-            rows.add("State : " + player.getState());
+        int padLength = (hands.isEmpty() ? 30 : hands.get(0).length());
+
+        rows.add(Strings.padEnd(player.getName(), padLength, ' '));
+        rows.add(Strings.repeat("-", padLength));
+        
+        for(int idx = 0; idx < hands.size(); idx++) {
+            String handRow = hands.get(idx);
+            rows.add(Strings.padEnd(handRow, padLength, ' '));
         }
-        rows.add(Strings.repeat("-", (hands.isEmpty() ? 7 : hands.get(0).length())));
+        rows.add(Strings.padEnd("Chips : " + player.getChips(), padLength, ' '));
+        rows.add(Strings.padEnd("Bet : " + player.getBet(), padLength, ' '));
+        if (player.isStateVisible()) {
+            rows.add(Strings.padEnd("State : " + player.getState(), padLength, ' '));
+        }
+        rows.add(Strings.repeat("-", padLength));
         return rows;    
     }
 
@@ -68,7 +74,7 @@ public class ConsoleGameViewer implements Visitor<List<String>, Blackjack, Black
         }
 
         for(Integer idx : multimap.keySet()) {
-            rows.add(String.format(Strings.repeat("%-7.7s", cards.size()) + "%n", 
+            rows.add(String.format(Strings.repeat("%-7.7s", cards.size()), 
                     Iterables.toArray(multimap.get(idx), Object.class)));
         }
         return rows; 
