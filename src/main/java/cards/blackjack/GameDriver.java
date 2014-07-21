@@ -57,11 +57,8 @@ public class GameDriver {
                 printGame(game, state);
                 printApplicableActions(actionIdMap);
                 
-                int chosenActionInt = scanner.nextInt();
-                while(!actionIdMap.containsKey(chosenActionInt)) {
-                    System.err.println("Choose a valid action from the above");
-                    chosenActionInt = scanner.nextInt();
-                }
+                /* Choose action */
+                int chosenActionInt = chooseAction(scanner, actionIdMap);
                 
                 /* Get the chosen action */
                 Action chosenAction = actionIdMap.get(chosenActionInt);
@@ -80,7 +77,28 @@ public class GameDriver {
             scanner.close();
         }
     }
-    
+  
+    private static int chooseAction(Scanner scanner, Map<Integer, Action> actionIdMap) {
+        int chosenActionInt = Integer.MAX_VALUE;
+        
+        while (true) {
+            String token = scanner.next();
+            
+            if (token.matches("\\d")) {
+                chosenActionInt = Integer.parseInt(token);
+            
+                if (!actionIdMap.containsKey(chosenActionInt)) {
+                    System.err.println("Choose a valid action from the above");
+                } else {
+                    break;
+                }
+            } else {
+                System.err.println("Choose a valid action from the above");                
+            }
+        }
+        return chosenActionInt;
+    }
+
     /**
      * Create a mapping from the action identifier to the action.
      *  
@@ -123,8 +141,6 @@ public class GameDriver {
                         params[count++] = Integer.parseInt(token);
                     }
                 }
-            } else {
-                System.out.println("Pattern does not match");
             }
         }
         return params;
