@@ -13,10 +13,13 @@ Blackjack is card game usually played at casinos. More information about the gam
 ### Pre-requisities
 * JDK 1.7
 * Maven
+* [Guava Library](https://code.google.com/p/guava-libraries/)
 
 The project is a maven java project which is a java build tool. It needs to be installed first. It can be downloaded from http://maven.apache.org/. 
 
 JDK can be downloaded from http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html.
+
+The project also has a dependency on the Google's Guava library. The usage of guava is restricted to use of collection and string utilities, including the functional `Function` and `Predicate` utilities.
 
 ### Build
 
@@ -37,6 +40,7 @@ The properties that can be configured are :
 * -DblackjackWinFactor - Defines the winning factor on the bet in case of a 'Blackjack'.
 
 # Code Structure
+#### [API Docs](http://amit-jain.github.io/blackjack/)
 
 The source code is structure into 2 packages:
 * *cards.common* - Contains classes which are common to any card game.
